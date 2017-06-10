@@ -165,14 +165,14 @@ if (fs.existsSync(configFile)) {
     config = defaultConfig;
 }
 
-args.command('start', 'start a service', (name, params) => start(params[0]))
+args.command('start', 'start a service [shadowsocks,privoxy,all]', (name, params) => start(params[0]))
     .command('stop', 'stop a service(bad impl)', (name, params) => stop(params[
         0]))
     .command('restart', '', (name, params) => {
         stop(params[0]);
         start(params[0]);
     })
-    .command('list', 'list shadowsocs hosts', () => showSSHosts())
+    .command('list', 'list shadowsocks hosts', () => showSSHosts())
     .command('switch', 'switch [which] ,use list command to get id..', (name,
         params) => switchSShost(parseInt(params[0])));
 args.parse(process.argv);
