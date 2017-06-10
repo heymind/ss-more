@@ -1,0 +1,17 @@
+{
+  "name": "ss-more",
+  "version": "1.0.0",
+  "description": "A command tool for managing shadowsocks hosts & privoxy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin":{"ssm":"./index.js"},
+  "author": "jujyjse",
+  "license": "ISC",
+  "dependencies": {
+    "args": "^3.0.2",
+    "hasbin": "^1.2.3",
+    "js-yaml": "^3.8.4"
+  }
+}
