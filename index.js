@@ -14,7 +14,7 @@ let config;
 const defaultConfig = {
     "shadowsocks": {
         "enable": false,
-        "local_addr": "127.0.0.0.1",
+        "local_addr": "127.0.0.1",
         "local_port": 1080,
         "timeout": 600,
         "hosts": [],
@@ -50,8 +50,8 @@ function parseSSUrl(url) {
 }
 
 function startSSlocal() {
-    if (!config.shadowsocks.enable) throw new Error('sslocal is disable.');
-    if (!hasbin.sync('sslocal')) throw new Error('sslocal binary is not found.');
+    if (!config.shadowsocks.enable) throw new Error('ss-local is disable.');
+    if (!hasbin.sync('ss-local')) throw new Error('ss-local binary is not found.');
     const current = config.shadowsocks.current;
     const [method, password, host, port] = parseSSUrl(config.shadowsocks.hosts[
         current]);
@@ -60,12 +60,12 @@ function startSSlocal() {
         local_addr,
         local_port
     } = config.shadowsocks;
-    console.log(`starting sslocal ...${host}:${port}`);
+    console.log(`starting ss-local ...${host}:${port}`);
     console.log(
-        `sslocal -s ${host} -p ${port} -k ${password} -m ${method} -t ${timeout} -b ${local_addr} -l ${local_port} &`
+        `ss-local -s ${host} -p ${port} -k ${password} -m ${method} -t ${timeout} -b ${local_addr} -l ${local_port} &`
     );
     const info = exec(
-        `sslocal -s ${host} -p ${port} -k ${password} -m ${method} -t ${timeout} -b ${local_addr} -l ${local_port} &`
+        `ss-local -s ${host} -p ${port} -k ${password} -m ${method} -t ${timeout} -b ${local_addr} -l ${local_port} &`
     );
 }
 
@@ -138,12 +138,12 @@ function start(service) {
 function stop(service) {
     switch (service) {
     case 'all':
-        exec('pkill sslocal');
+        exec('pkill ss-local');
         exec('pkill privoxy');
         break;
     case 'shadowsocks':
-        console.log('bad impl....(pkill sslocal)');
-        exec('pkill sslocal');
+        console.log('bad impl....(pkill ss-local)');
+        exec('pkill ss-local');
         break;
     case 'privoxy':
         console.log('bad impl....(pkill privoxy)');
